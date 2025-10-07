@@ -1,0 +1,17 @@
+<img src="/img/laptopp.png" alt="Articles" class="articles-banner-image reveal-on-scroll">
+<div class="articles-inverted-wrapper">
+<div class="main-container px-2">
+<h1 class="text-center reveal-on-scroll service-page-title">ARTICLES</h1>
+<div class="article-list reveal-on-scroll">
+    {{#each articles}}
+    <a href="/articles/{{this.id}}" class="article-preview">
+        <img src="{{this.imageUrl}}" alt="{{this.title}}">
+        <div class="article-preview-content">
+            <h2>{{this.title}}</h2>
+            <p>{{this.snippet}}</p>
+        </div>
+    </a>
+    {{/each}}
+</div>
+</div>
+</div>
