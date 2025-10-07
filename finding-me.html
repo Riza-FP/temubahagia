@@ -33,16 +33,16 @@ html {
     body {
         font-family: 'Nunito', sans-serif;
         text-align: center;
-        margin: 0;
     }    h1, h2, h3, h4, h5 {
         font-size: 2em;
         font-weight: bold;
     }
     p {
         line-height: 1.8;
+        font-size: 1.1rem;
     }
     .navbar-logo-img {
-        height: 55px;
+        height: 100px;
     }
     .navbar-nav .nav-link {
         font-family: 'Nunito', sans-serif;
@@ -53,7 +53,7 @@ html {
         color: black;
     }
     .navbar-nav .nav-item {
-        margin-left: 1rem;
+        margin-left: 2rem;
     }
     .dropdown-menu .dropdown-item {
         color: rgb(45, 147, 211);
@@ -130,7 +130,7 @@ html {
     }
     .full-width-hero-background {
         width: 100%;
-        background-image: url('img/happy.jpg');
+        background-image: url('public/img/happy.jpg');
         background-size: cover;
         background-position: center;
         padding: 10em 0;
@@ -221,7 +221,7 @@ footer .social-icons a {
 }
 
 .footer-logo {
-    max-width: 100px;
+    max-width: 200px;
     margin-top: 2.5em;
 }
 
@@ -757,7 +757,7 @@ footer .social-icons a {
 }
 .feature-text p {
     font-family: 'Nunito', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.8;
     color: #555;
 }
@@ -1022,9 +1022,9 @@ footer .social-icons a {
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
-        <div class="container">
+        <div class="container-fluid px-5">
             <a class="navbar-brand" href="index.html">
-                <img src="img/temubahagiatrans.png" alt="Logo" class="navbar-logo-img">
+                <img src="public/img/temubahagiatrans.png" alt="Logo" class="navbar-logo-img">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -1064,7 +1064,7 @@ footer .social-icons a {
         <div class="page-inverted reveal-on-scroll">
     <div class="main-container px-1">
         <div class="main-hero">
-            <img src="img/finding me.jpg" alt="Calming therapy image" class="top-image">
+            <img src="public/img/finding me.jpg" alt="Calming therapy image" class="top-image">
             <h1 class="service-page-title">Finding Me: Program Self Improvement (Pengembangan Diri)</h1>
         </div>
     </div>
@@ -1145,7 +1145,7 @@ footer .social-icons a {
                     <a href="https://www.facebook.com/profile.php?id=100077435064155#"><i class="fab fa-facebook"></i></a>
                     <a href="https://www.instagram.com/temubahagia.id"><i class="fab fa-instagram"></i></a>
                 </div>
-                <img src="img/Filosofi logo.png" alt="Filosofi Logo" class="footer-logo">
+                <img src="public/img/Filosofi logo.png" alt="Filosofi Logo" class="footer-logo">
             </div>
             <form id="contact-form">
                 <label for="name" style="margin-right: 8px;">Nama</label>
@@ -1161,7 +1161,31 @@ footer .social-icons a {
         </div>
     </footer>    
     <script>
-      // Contact form functionality is disabled in the static version.
+      const form = document.getElementById('contact-form');
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const help = document.getElementById('help').value;
+
+        const response = await fetch('/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, phone, help }),
+        });
+
+        const result = await response.text();
+        console.log(result);
+
+        const thankYouMessage = document.createElement('div');
+        thankYouMessage.innerHTML = '<p style="text-align: center; font-size: 1.2em;">Terima kasih telah menghubungi kami! Kami akan segera menghubungi Anda.</p>';
+
+        form.replaceWith(thankYouMessage);
+      });
     </script>
 <script>
       const images = ;
